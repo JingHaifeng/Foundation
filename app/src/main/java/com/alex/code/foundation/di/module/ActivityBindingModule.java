@@ -1,6 +1,6 @@
 package com.alex.code.foundation.di.module;
 
-import com.alex.code.foundation.MainActivity;
+import com.alex.code.foundation.main.MainActivity;
 import com.alex.code.foundation.di.annotation.ActivityScope;
 
 import dagger.Module;

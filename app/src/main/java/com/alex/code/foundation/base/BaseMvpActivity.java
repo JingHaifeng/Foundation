@@ -18,14 +18,14 @@ import javax.inject.Provider;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import dagger.android.AndroidInjection;
-import dagger.android.HasFragmentInjector;
 
-public abstract class BaseActivity<
+public abstract class BaseMvpActivity<
         VIEW extends MvpView,
         PRESENTER extends MvpPresenter<VIEW>,
         VIEW_STATE extends ViewState<VIEW>>
-        extends AppCompatActivity implements MvpViewStateDelegateCallback<VIEW, PRESENTER, VIEW_STATE>,
-        HasFragmentInjector {
+        extends AppCompatActivity
+        implements MvpViewStateDelegateCallback<VIEW, PRESENTER, VIEW_STATE>{
+
 
     @Inject
     Provider<PRESENTER> mPresenterProvider;
@@ -47,9 +47,12 @@ public abstract class BaseActivity<
         setContentView(getLayoutId());
         mUnbinder = ButterKnife.bind(this);
         getMvpDelegate().onCreate(savedInstanceState);
+        init();
     }
 
     protected abstract int getLayoutId();
+
+    protected abstract void init();
 
     // Delegate propagation ***********************
 
@@ -164,7 +167,8 @@ public abstract class BaseActivity<
         mViewStateRestoreInProgress = restoringViewState;
     }
 
-    public boolean isViewStateRestoreInProgress() {
+    @Override
+    public boolean isRestoringViewState() {
         return mViewStateRestoreInProgress;
     }
 
