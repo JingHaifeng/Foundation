@@ -66,4 +66,7 @@ dependencies {
     compile projectDependencies.butterknife
     annotationProcessor projectDependencies.butterknifeAnnotationProcessor
 
+    // Test
+    testCompile projectDependencies.jUnit
+
 }
