@@ -1,17 +1,17 @@
 # 搭建一个基本的应用
 
-##采用方案
-###MVP 
+## 采用方案
+### MVP 
 [**mosby**](https://github.com/sockeqwe/mosby)
 
-###DI
+### DI
 [**Dagger2**](https://github.com/google/dagger)
 
-###HTTP
+### HTTP
 [**OkHttp3**](https://github.com/square/okhttp)
 [**Retrofit**](https://github.com/square/retrofit)
 
-###Rx
+### Rx
 [**RxJava**](https://github.com/ReactiveX/RxJava)
 [**RxAndroid**](https://github.com/ReactiveX/RxAndroid)
 
