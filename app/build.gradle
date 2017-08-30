@@ -1,0 +1,58 @@
+apply plugin: 'com.android.application'
+
+
+buildscript {
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath "com.android.tools.build:gradle:$versions.androidPlugin"
+//        classpath "me.tatarka:gradle-retrolambda:$versions.retrolambdaPlugin"
+    }
+}
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion versions.buildTools
+    defaultConfig {
+        applicationId "com.alex.code.foundation"
+        minSdkVersion 19
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    // support
+    compile projectDependencies.supportLibsAppCompat
+    compile projectDependencies.supportLibsConstraintLayout
+    compile projectDependencies.supportLibsMultiDex
+
+    // Logger
+    compile projectDependencies.logger
+
+    // Dagger2
+    compile projectDependencies.dagger
+    annotationProcessor projectDependencies.daggerAnnotationProcessor
+    compile projectDependencies.daggerAndroid
+    compile projectDependencies.daggerAndroidSupport
+    annotationProcessor projectDependencies.daggerAndroidAnnotationProcessor
+
+    // Retrofit
+    compile projectDependencies.retrofit
+    compile projectDependencies.retrofitGson
+    compile projectDependencies.okhttpLoggingInterceptor
+    compile projectDependencies.retrofitRxJava2Adapter
+}

@@ -1,0 +1,42 @@
+ext.projectDependencies = [
+
+        // MVP library. See https://github.com/sockeqwe/mosby
+        mosbyMvp                        : "com.hannesdorfmann.mosby3:mvp:$versions.mosbyMvp",
+        mosbyLce                        : "com.hannesdorfmann.mosby3:mvp-lce:$versions.mosbyMvp",
+        mosbyViewState                  : "com.hannesdorfmann.mosby3:viewstate:$versions.mosbyMvp",
+        mosbyNullPresenter              : "com.hannesdorfmann.mosby3:mvp-nullobject-presenter:$versions.mosbyMvp",
+
+        // Dagger dependency injection - Includes android specific components
+        dagger                          : "com.google.dagger:dagger:$versions.dagger",
+        daggerAnnotationProcessor       : "com.google.dagger:dagger-compiler:$versions.dagger",
+
+        daggerAndroid                   : "com.google.dagger:dagger-android:$versions.dagger",
+        daggerAndroidSupport            : "com.google.dagger:dagger-android-support:$versions.dagger",
+        daggerAndroidAnnotationProcessor: "com.google.dagger:dagger-android-processor:$versions.dagger",
+
+        // RxJava
+        rxAndroid                       : "io.reactivex.rxjava2:rxandroid:$versions.rxAndroid",
+        rxJava2                         : "io.reactivex.rxjava2:rxjava:$versions.rxJava",
+
+        // Retrofit networking
+        retrofit                        : "com.squareup.retrofit2:retrofit:$versions.retrofit",
+        retrofitGson                    : "com.squareup.retrofit2:converter-gson:$versions.retrofit",
+        okhttpLoggingInterceptor        : "com.squareup.okhttp3:logging-interceptor:$versions.loggingInterceptor",
+        retrofitRxJava2Adapter          : "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit",
+
+        // Log
+        logger                          : "com.orhanobut:logger:$versions.logger",
+
+        // Unit test support
+        jUnit                           : "junit:junit:$versions.jUnit",
+
+        // Main espresso test support
+        espresso                        : "com.android.support.test.espresso:espresso-core:$versions.espresso",
+
+        // Support libraries
+        supportLibsAppCompat            : "com.android.support:appcompat-v7:$versions.supportLibraries",
+        supportLibsAnnotations          : "com.android.support:support-annotations:$versions.supportLibraries",
+        supportLibsRecyclerview         : "com.android.support:recyclerview-v7:$versions.supportLibraries",
+        supportLibsConstraintLayout     : "com.android.support.constraint:constraint-layout:$versions.constraintLayout",
+        supportLibsMultiDex             : "com.android.support:multidex:$versions.multidexLib",
+]
