@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-
+apply plugin: 'com.jakewharton.butterknife'
 
 buildscript {
     repositories {
@@ -9,7 +9,7 @@ buildscript {
 
     dependencies {
         classpath "com.android.tools.build:gradle:$versions.androidPlugin"
-//        classpath "me.tatarka:gradle-retrolambda:$versions.retrolambdaPlugin"
+        classpath "com.jakewharton:butterknife-gradle-plugin:$versions.butterknife"
     }
 }
 
@@ -55,4 +55,15 @@ dependencies {
     compile projectDependencies.retrofitGson
     compile projectDependencies.okhttpLoggingInterceptor
     compile projectDependencies.retrofitRxJava2Adapter
+
+    // MVP
+    compile projectDependencies.mosbyMvp
+    compile projectDependencies.mosbyLce
+    compile projectDependencies.mosbyViewState
+    compile projectDependencies.mosbyNullPresenter
+
+    // Butter Knife
+    compile projectDependencies.butterknife
+    annotationProcessor projectDependencies.butterknifeAnnotationProcessor
+
 }

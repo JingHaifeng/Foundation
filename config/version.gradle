@@ -28,4 +28,5 @@ ext.versions = [
         okHttp3            : '3.8.1',
         retrofit           : '2.3.0',
         logger             : '2.1.1',
+        butterknife        : '8.8.1',
 ]
