@@ -2,6 +2,8 @@ package com.alex.code.foundation.login;
 
 import com.hannesdorfmann.mosby3.mvp.viewstate.ViewState;
 
+import javax.inject.Inject;
+
 public class LoginViewState implements ViewState<LoginView> {
 
     private final int STATE_SHOW_LOGIN_FORM = 0x00;
@@ -9,6 +11,10 @@ public class LoginViewState implements ViewState<LoginView> {
     private final int STATE_SHOW_ERROR = 0x02;
 
     private int mState = STATE_SHOW_LOGIN_FORM;
+
+    @Inject
+    public LoginViewState() {
+    }
 
     @Override
     public void apply(LoginView view, boolean retained) {

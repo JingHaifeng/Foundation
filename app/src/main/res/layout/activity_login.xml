@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:ignore="SmallSp">
+
+    <LinearLayout
+        android:id="@+id/loginForm"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:clipToPadding="false"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Username"
+            android:textCursorDrawable="@drawable/text_cursor"
+            app:met_floatingLabel="highlight"/>
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:textCursorDrawable="@drawable/text_cursor"
+            app:met_floatingLabel="highlight"/>
+
+        <com.dd.processbutton.iml.ActionProcessButton
+            android:id="@+id/loginButton"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="32dp"
+            android:text="Sign in"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            app:pb_colorComplete="@color/green_complete"
+            app:pb_colorNormal="@color/colorAccent"
+            app:pb_colorPressed="@color/colorAccentDark"
+            app:pb_textComplete="Successful"
+            app:pb_textProgress="Loading"/>
+
+        <TextView
+            android:id="@+id/errorView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="8dp"
+            android:text="Bad username or password"
+            android:textColor="@color/colorAccentDark"
+            android:textSize="14sp"
+            android:visibility="gone"
+            tools:visibility="visible"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:textSize="10sp"
+            android:textColor="@android:color/black"
+            android:text="Hint:\nusername = abc   password = 123"
+            />
+    </LinearLayout>
+</ScrollView>

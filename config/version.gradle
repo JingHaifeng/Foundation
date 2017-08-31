@@ -29,4 +29,13 @@ ext.versions = [
         retrofit           : '2.3.0',
         logger             : '2.1.1',
         butterknife        : '8.8.1',
+        aRouterApi         : '1.2.2',
+        aRouterCompiler    : '1.1.3',
+
+        // UI 库
+        materialEditText   : '2.1.4',
+        processButton      : '1.0.4',
+
+        // Debug
+        sherlock           : '1.0.3'
 ]

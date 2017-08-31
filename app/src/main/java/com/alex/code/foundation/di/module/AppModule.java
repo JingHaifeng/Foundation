@@ -21,6 +21,7 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import io.reactivex.disposables.CompositeDisposable;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -35,6 +36,7 @@ public class AppModule {
     static Context provideApplicationContext(App app) {
         return app.getApplicationContext();
     }
+
     /**
      * @return SharedPreference Name
      */
@@ -106,4 +108,8 @@ public class AppModule {
         return appDataManager;
     }
 
+    @Provides
+    static CompositeDisposable providerCompositeDisposable() {
+        return new CompositeDisposable();
+    }
 }

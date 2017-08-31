@@ -23,6 +23,12 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [moduleName: project.getName()]
+            }
+        }
     }
     buildTypes {
         release {
@@ -62,11 +68,26 @@ dependencies {
     compile projectDependencies.mosbyViewState
     compile projectDependencies.mosbyNullPresenter
 
+    // Rx
+    compile projectDependencies.rxJava2
+    compile projectDependencies.rxAndroid2
+
     // Butter Knife
     compile projectDependencies.butterknife
     annotationProcessor projectDependencies.butterknifeAnnotationProcessor
 
+    // Router
+    compile projectDependencies.aRouterApi
+    annotationProcessor projectDependencies.aRouterCompiler
+
+    // UI
+    compile projectDependencies.materialEditText
+    compile projectDependencies.processButton
+
+    // Debug
+    debugCompile projectDependencies.sherlockLibs
+    releaseCompile projectDependencies.sherlockLibsNoOp
+
     // Test
     testCompile projectDependencies.jUnit
-
 }
