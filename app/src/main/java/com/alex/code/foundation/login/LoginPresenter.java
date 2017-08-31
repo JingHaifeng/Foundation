@@ -9,7 +9,6 @@ import javax.inject.Inject;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
@@ -25,29 +24,23 @@ public class LoginPresenter extends BaseMvpPresenter<LoginView> {
         getView().showLoading();
 
         addDisposable(Observable.just(authCredentials)
-                .map(new Function<AuthCredentials, Boolean>() {
-                    @Override
-                    public Boolean apply(AuthCredentials authCredentials) throws Exception {
-                        try {
-                            // Simulate network delay
-                            Thread.sleep(3000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                        return TextUtils.equals(authCredentials.getUsername(), mFakeAuthCredentials.getUsername())
-                                && TextUtils.equals(authCredentials.getPassword(), mFakeAuthCredentials.getPassword());
+                .map(credentials -> {
+                    try {
+                        // Simulate network delay
+                        Thread.sleep(3000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
                     }
+                    return TextUtils.equals(credentials.getUsername(), mFakeAuthCredentials.getUsername())
+                            && TextUtils.equals(credentials.getPassword(), mFakeAuthCredentials.getPassword());
                 })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<Boolean>() {
-                    @Override
-                    public void accept(Boolean aBoolean) throws Exception {
-                        if (aBoolean) {
-                            getView().loginSuccessful();
-                        } else {
-                            getView().showError();
-                        }
+                .subscribe(isAccessed -> {
+                    if (isAccessed) {
+                        getView().loginSuccessful();
+                    } else {
+                        getView().showError();
                     }
                 }));
     }
