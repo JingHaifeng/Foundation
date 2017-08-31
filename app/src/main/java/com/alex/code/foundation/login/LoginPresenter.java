@@ -2,24 +2,20 @@ package com.alex.code.foundation.login;
 
 import android.text.TextUtils;
 
+import com.alex.code.foundation.base.BaseMvpPresenter;
 import com.alex.code.foundation.login.module.AuthCredentials;
-import com.hannesdorfmann.mosby3.mvp.MvpNullObjectBasePresenter;
 
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
-public class LoginPresenter extends MvpNullObjectBasePresenter<LoginView> {
+public class LoginPresenter extends BaseMvpPresenter<LoginView> {
 
     private AuthCredentials mFakeAuthCredentials = new AuthCredentials("abc", "123");
-
-    @Inject
-    CompositeDisposable mDisposable;
 
     @Inject
     public LoginPresenter() {
@@ -28,7 +24,7 @@ public class LoginPresenter extends MvpNullObjectBasePresenter<LoginView> {
     public void login(AuthCredentials authCredentials) {
         getView().showLoading();
 
-        mDisposable.add(Observable.just(authCredentials)
+        addDisposable(Observable.just(authCredentials)
                 .map(new Function<AuthCredentials, Boolean>() {
                     @Override
                     public Boolean apply(AuthCredentials authCredentials) throws Exception {
@@ -56,9 +52,4 @@ public class LoginPresenter extends MvpNullObjectBasePresenter<LoginView> {
                 }));
     }
 
-    @Override
-    public void detachView(boolean retainInstance) {
-        super.detachView(retainInstance);
-        mDisposable.dispose();
-    }
 }
