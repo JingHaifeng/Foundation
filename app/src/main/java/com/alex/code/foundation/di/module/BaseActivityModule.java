@@ -19,6 +19,10 @@ public abstract class BaseActivityModule {
     public static final String ACTIVITY_SUPPORT_FRAGMENT_MANAGER = "BaseActivityModule.SupportManager";
 
     @Binds
+    @PerActivity
+    abstract Activity activity(AppCompatActivity appCompatActivity);
+
+    @Binds
     @PerActivity//@PerActivity 并不是必须的，仅是为了方便阅读理解。
     abstract Context activityContext(Activity activity);
 
