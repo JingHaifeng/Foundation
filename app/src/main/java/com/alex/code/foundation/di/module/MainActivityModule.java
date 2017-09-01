@@ -5,7 +5,7 @@ import dagger.Module;
 /**
  * MainActivity 相关
  */
-@Module
+@Module(includes = BaseActivityModule.class)
 public class MainActivityModule {
 
     // presenter

@@ -3,13 +3,9 @@ package com.alex.code.foundation.di.annotation;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-import javax.inject.Qualifier;
+import javax.inject.Scope;
 
-/**
- * 标记 Context 为 Activity 相对应
- */
-@Qualifier
+@Scope
 @Retention(RetentionPolicy.RUNTIME)
-public @interface ActivityContext {
-
+public @interface PerFragment {
 }

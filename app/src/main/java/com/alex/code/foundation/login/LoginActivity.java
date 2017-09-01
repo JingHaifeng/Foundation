@@ -1,6 +1,7 @@
 package com.alex.code.foundation.login;
 
 import android.animation.LayoutTransition;
+import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.EditText;
 
 import com.alex.code.foundation.R;
 import com.alex.code.foundation.base.BaseMvpActivity;
+import com.alex.code.foundation.base.BaseMvpViewStateActivity;
 import com.alex.code.foundation.login.module.AuthCredentials;
 import com.alex.code.foundation.utils.KeyboardUtils;
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -20,7 +22,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 @Route(path = "/foundation/login")
-public class LoginActivity extends BaseMvpActivity<LoginView, LoginPresenter, LoginViewState> implements LoginView {
+public class LoginActivity extends BaseMvpViewStateActivity<LoginView, LoginPresenter, LoginViewState> implements LoginView {
 
     @BindView(R.id.loginForm)
     ViewGroup mLoginForm;

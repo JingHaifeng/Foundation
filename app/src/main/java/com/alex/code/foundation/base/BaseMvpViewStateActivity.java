@@ -1,19 +1,16 @@
 package com.alex.code.foundation.base;
 
 import android.os.Bundle;
-import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 
-import com.alex.code.foundation.di.module.BaseActivityModule;
-import com.hannesdorfmann.mosby3.mvp.MvpActivity;
 import com.hannesdorfmann.mosby3.mvp.MvpPresenter;
 import com.hannesdorfmann.mosby3.mvp.MvpView;
+import com.hannesdorfmann.mosby3.mvp.viewstate.MvpViewStateActivity;
+import com.hannesdorfmann.mosby3.mvp.viewstate.ViewState;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 import javax.inject.Provider;
 
 import butterknife.ButterKnife;
@@ -25,22 +22,21 @@ import dagger.android.support.HasSupportFragmentInjector;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 
-public abstract class BaseMvpActivity<V extends MvpView, P extends MvpPresenter<V>>
-        extends MvpActivity<V, P>
+public abstract class BaseMvpViewStateActivity<V extends MvpView, P extends MvpPresenter<V>, VS extends ViewState<V>>
+        extends MvpViewStateActivity<V, P, VS>
         implements HasSupportFragmentInjector {
-
-    @Inject
-    @Named(BaseActivityModule.ACTIVITY_SUPPORT_FRAGMENT_MANAGER)
-    protected FragmentManager fragmentManager;
 
     @Inject
     DispatchingAndroidInjector<Fragment> mFragmentDispatchingAndroidInjector;
 
     @Inject
+    Provider<P> mPresenterProvider;
+
+    @Inject
     CompositeDisposable mCompositeDisposable;
 
     @Inject
-    Provider<P> mPresenterProvider;
+    Provider<VS> mViewStateProvider;
 
     protected Unbinder mUnbinder;
 
@@ -59,7 +55,6 @@ public abstract class BaseMvpActivity<V extends MvpView, P extends MvpPresenter<
 
     // Delegate propagation ***********************
 
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -73,6 +68,21 @@ public abstract class BaseMvpActivity<V extends MvpView, P extends MvpPresenter<
         return mPresenterProvider.get();
     }
 
+    @NonNull
+    @Override
+    public VS createViewState() {
+        return mViewStateProvider.get();
+    }
+
+    @Override
+    public void onNewViewStateInstance() {
+        onFirstCreate();
+    }
+
+    protected void onFirstCreate() {
+
+    }
+
     protected void addDispose(Disposable disposable) {
         mCompositeDisposable.add(disposable);
     }
@@ -80,11 +90,5 @@ public abstract class BaseMvpActivity<V extends MvpView, P extends MvpPresenter<
     @Override
     public AndroidInjector<Fragment> supportFragmentInjector() {
         return mFragmentDispatchingAndroidInjector;
-    }
-
-    protected final void addFragment(@IdRes int containerViewId, Fragment fragment) {
-        fragmentManager.beginTransaction()
-                .add(containerViewId, fragment)
-                .commit();
     }
 }
